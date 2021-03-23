@@ -1,1 +1,1 @@
-# java-code-quality-guide
+# Java Code Quality Guide
