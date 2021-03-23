@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="author" content="Omar Ibrahim">
+    <title>CSE142 Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../style/style.css" />
+</head>
+<body>  
+    <div class="d-flex">
+        <div class="side-bar">
+            <ul class="nav-list">
+                <li class="nav-list-item">
+                    <a href="#Java_Conventions" class="nav-list-link">Java Conventions</a>
+                    <ul class="nav-list">
+                        <li class="nav-list-item"><a href="#Curly_Braces" class="nav-list-link">Curly Braces</a></li>
+                        <li class="nav-list-item"><a href="#Indentation" class="nav-list-link">Indentation</a></li>
+                        <li class="nav-list-item"><a href="#Long_Lines_and_Wrapping" class="nav-list-link">Long Lines &amp; Wrapping</a></li>
+                        <li class="nav-list-item"><a href="#Spacing" class="nav-list-link">Spacing</a></li>
+                    </ul>
+                </li>
+                <li class="nav-list-item">
+                    <a href="#Names" class="nav-list-link">Names</a>
+                    <ul class="nav-list">
+                        <li class="nav-list-item"><a href="#Naming_Conventions" class="nav-list-link">Naming Conventions</a></li>
+                        <li class="nav-list-item"><a href="#Descriptive_Names" class="nav-list-link">Descriptive Names</a></li>
+                    </ul>
+                </li>
+                <li class="nav-list-item"><a href="#Methods" class="nav-list-link">Methods</a></li>
+                <li class="nav-list-item"><a href="#Printing" class="nav-list-link">Printing</a></li>
+                <li class="nav-list-item">
+                    <a href="#Variables" class="nav-list-link">Variables</a>
+                    <ul class="nav-list">
+                        <li class="nav-list-item"><a href="#Scoping" class="nav-list-link">Scoping</a></li>
+                        <li class="nav-list-item"><a href="#Constants" class="nav-list-link">Constants</a></li>
+                    </ul>
+                </li>
+                <li class="nav-list-item">
+                    <a href="#Types" class="nav-list-link">Types</a>
+                    <ul class="nav-list">
+                        <!--<li><a href="#Primitives_vs_Wrapper_Classes">Primitives (and Wrapper Classes)</a></li>-->
+                        <li class="nav-list-item"><a href="#int_vs_double" class="nav-list-link">int vs double</a></li>
+                        <li class="nav-list-item"><a href="#boolean" class="nav-list-link">booleans</a></li>
+                    </ul>
+                </li>
+                <li class="nav-list-item"><a href="#Loops" class="nav-list-link">Loops</a></li>
+                <li class="nav-list-item">
+                    <a href="#Conditionals" class="nav-list-link">Conditionals and Booleans</a>
+                    <ul class="nav-list">
+                        <li class="nav-list-item"><a href="#ifelse_Structure_Choice" class="nav-list-link">if/else Structures</a></li>
+                        <li class="nav-list-item"><a href="#Useless_Branches" class="nav-list-link">Useless Branches</a></li>
+                        <li class="nav-list-item"><a href="#Factoring" class="nav-list-link">Factoring</a></li>
+                        <li class="nav-list-item"><a href="#Boolean_Zen" class="nav-list-link">Boolean Zen</a></li>
+                    </ul>
+                </li>
+                <li class="nav-list-item"><a href="#Using_Objects" class="nav-list-link">Using Objects</a></li>
+                <li class="nav-list-item">
+                    <a href="#Arrays" class="nav-list-link">Arrays</a>
+                    <ul class="nav-list">
+                        <li class="nav-list-item"><a href="#Unrolling_Arrays" class="nav-list-link">Unrolling Arrays</a></li>
+                    </ul>
+                </li>
+                <li class="nav-list-item">
+                    <a href="#Creating_Objects" class="nav-list-link">Creating Objects</a>
+                    <ul class="nav-list">
+                        <li class="nav-list-item"><a href="#Fields" class="nav-list-link">Fields</a></li>
+                        <li class="nav-list-item"><a href="#Constructors" class="nav-list-link">Constructors</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    <div class="container">
+        <header class="navbar">
+            <div class="site-header">
+                <h1>CSE 142 Java Code Quality Guide</h1>
+            </div>
+            <nav class="aux-nav">
+                <ul class="aux-nav-list">
+                    <li class="aux-nav-list-item"><a class="active site-button" href="./">General Style</a></li>
+                    <li class="aux-nav-list-item"><a class="site-button" href="./commenting/">Comments</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="main-content-wrap">
+    <div id="header">
+        <h5>
+            <a id="Last_Updated_23_April_2019_3"></a>Last Updated <em>23 September 2020</em>
+        </h5>
+        <p>
+            Writing Java code isn't just about writing code that compiles and works. If we wanted code that just got a computer to follow our directions, why not just write it in binary? Truth is, code isn't written for computers; it's written for people. Programming in the real world is a highly collaborative activity, so it's very important to be able to write code that is easy to work with and understand. Having clean, readable code also makes finding bugs and errors in your code significantly easier. This code quality guide contains a set of guidelines we expect you to follow when writing code. This is a code style guide for <a href="https://cs.uw.edu/142">CSE 142</a> at the University of Washington and contains a set of guidelines we expect you to follow when writing code.This document covers the entire quarter, so it is not meant to be something that you memorize and understand entirely through one read through. Rather, it is a reference guide that you should be able to use to look up rules and examples.
+        </p>
+        <blockquote>
+            <p>
+                Questions about the guide? We are always looking to improve our resources, feel free to reach out to <a href="mailto:oibra@cs.washington.edu">Omar</a> with any questions or concerns!
+            </p>
+        </blockquote>
+    </div>
+
+    <h3><a id="Java_Conventions"></a>Java Conventions</h3>
+    <p>
+        Java syntax is writing code in a way that allows it to compile. Conventions are things that don't affect whether the code will compile, but are just generally accepted as part of writing good Java code, and are things that you should adhere to ensure you are writing good, readable code.
+    </p>
+    <h5>
+        <a id="Curly_Braces"></a>Curly Braces
+    </h5>
+    <p>
+        In Java curly braces are used to compartmentalize blocks of code. Lots of languages use curly braces, and Java has its a convention for how to use them. An opening curly brace should be placed at the end of the line that opened it, and the closing curly brace should be on a line by itself at the same level of indentation as the line with the opening curly brace.
+    </p>
+    <pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloWorld</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        System.out.println(<span class="hljs-string">"Hello World!"</span>);
+    }
+}</code></pre>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h5>
+        <a id="Indentation"></a>Indentation
+    </h5>
+    <p>
+        Indentation is an important way to help distinguish blocks of code. You should indent your program one tab further every time you open a curly brace <code>{</code> and indent one tab less every time you close a curly brace <code>}</code>.
+    </p>
+    <blockquote>
+    <p>A tab should generally be 3 or 4 spaces, and you can set the size of your tab in your compiler. The jGrasp default is 3 spaces</p>
+    </blockquote>
+    <p>
+        Take these two examples:
+    </p>
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="bad-code"><code class="language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+<span class="hljs-keyword">if</span> (i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+System.out.println(<span class="hljs-string">"Hello world!"</span>);
+}
+}
+}</code></pre>
+    <p>
+        This method has no indentation, and is super hard to read as a result. Now look at the second method below:
+    </p>
+    <strong><small>DO THIS</small></strong>
+    <pre class="good-code"><code class="language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+        <span class="hljs-keyword">if</span> (i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+            System.out.println(<span class="hljs-string">"Hello world"</span>);
+        }
+    }
+}</code></pre>
+    <p>
+        Indentation makes code easier to read. It helps the reader see what code is nested where, and where structures like <code>if</code> statements and loops start and end.
+    </p>
+    <blockquote>
+        <p>
+            You can actually have jGRASP fix all your indentation for you! To the right of the <strong>Undo</strong> button is the <strong>Generate CSD</strong> button, which will automatically indent your code and add some structural annotations on your code, which can be removed with the next button to the right, the <strong>Remove CSD</strong> button.
+        </p>
+    </blockquote>   
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h5><a id="Long_Lines_and_Wrapping"></a>Long Lines and Wrapping</h5>
+    <p>
+        To keep our code nice and compact and improve readability, lines of code should ideally max out at 80 characters, and should <strong>never</strong> exceed 100 characters in length. Lines that are too long should be broken up and wrapped to the next line.
+    </p>
+    <blockquote>
+        <p>
+            Note that in jGrasp, you can check your line length by putting your cursor at the end of the line and check the bottom right corner. There should be something that says "Col:" and then the number of characters in the line.
+        </p>
+    </blockquote>
+    <p>To break up a long comment, you can simply split the comment into two or more lines:</p>
+    <pre class="code-sample"><code class="language-java">// THIS IS A BAD COMMENT
+// this is a bad comment because it is just so gosh darn long that it just makes it so hard to read
+
+// THIS IS A GOOD COMMENT
+// this is a good comment because when it reaches the point where it is too long,
+// the comment just moves to the next line</code></pre>
+    <p>
+        Breaking up lines of code is a little more complicated. Choosing where to break up your lines can be a little arbitrary, but it's usually best to break the line <em>after</em> things like commas and operators. IMPORTANT: You cannot break a String up between lines. If you want to break a String up, you need to use two separate Strings that are concatenated. There are two conventions for wrapping a line of code:
+    </p>
+    <ol>
+        <li>You can leave a hanging indent of two tabs relative to the start of the first line, like so:</li>
+    </ol>
+    <pre class="code-sample"><code class="language-java">// Because the String to be printed is so long, it gets wrapped to the next line
+public static void printReallyLongLine() {
+System.out.println("wow this line is so long it's like unreasonably long like" +
+        "honestly it's so long why even");
+}</code></pre>
+    <ol start="2">
+        <li>Or, if the long line has something in parentheses, like a method header, you can align the code inside the parentheses, like so:</li>
+    </ol>
+    <pre class="code-sample"><code class="language-java">public static void thisMethodHeaderIsReallyLong(int thing, int otherThing,
+                                            int moreThings, int anotherThing)</code></pre>
+    <blockquote>
+        <p>
+            Note that these are very bad method and variable names, and you should not use these as an example. These are just examples of long lines.
+        </p>
+    </blockquote>
+    <strong>
+        <a href="#">⬆ back to top</a>
+    </strong>
+    <h5><a id="Spacing"></a>Spacing</h5>
+    <p>
+        It might seem trivial, but spacing is very important for writing readable code. Here are some examples of Java conventions for good spacing for your code:
+    </p>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Good Spacing</th>
+                <th>Bad Spacing</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Class Header</td>
+                <td><code>public class GoodSpacing {</code></td>
+                <td><code>public class BadSpacing{</code></td>
+            </tr>
+            <tr>
+                <td>Method Header</td>
+                <td><code>public void method(int param, int param2) {</code></td>
+                <td><code>public void method (int param,int param2){</code></td>
+            </tr>
+            <tr>
+                <td>Method Call</td>
+                <td><code>method(7, 2);</code></td>
+                <td><code>method(7,2);</code></td>
+            </tr>
+            <tr>
+                <td>for loop</td>
+                <td><code>for (int i = 0; i &lt; 5; i++) {</code></td>
+                <td><code>for(int i=0;i&lt;5;i++){</code></td>
+            </tr>
+            <tr>
+                <td>while loop</td>
+                <td><code>while (test) {</code></td>
+                <td><code>while(test){</code></td>
+            </tr>
+            <tr>
+                <td>Array Initialization</td>
+                <td><code>int[] arr = new int[5];</code></td>
+                <td><code>int [] arr=new int [5];</code></td>
+            </tr>
+            <tr>
+                <td>Variable Initialization</td>
+                <td><code>int x = -5 * j + y % 2;</code></td>
+                <td><code>int x=-5*j+y%2;</code></td>
+            </tr>
+        </tbody>
+    </table>
+    <blockquote>
+        <p>
+            Note the spacing in expressions. Generally, you should always leave a space on either side of an operator (+, -, =, etc.). The only exceptions are <code>++</code>, <code>--</code>, and using <code>-</code> to express negative numbers (i.e. <code>-5</code> ).
+        </p>
+    </blockquote>
+    <strong>
+        <a href="#">⬆ back to top</a>
+    </strong>
+    <h5><a id="spacing_between_methods"></a>Spacing Between Methods</h5>
+    <p>Similar to spacing within lines of code, we want to ensure that we have spacing in the structure of our code to keep our code looking readable. You should always include a blank line between methods to make sure your code is easy to read through.</p>
+    <strong><small>DO THIS</small></strong>
+    <pre class="code-sample good-code"><code class="language-java">public class GoodSpacing {
+    public static void main(String[] args) {
+        ...
+    }
+
+    public static void method() {
+        ...
+    }
+
+    public static void anotherMethod() {
+        ...
+    }
+}</code></pre>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h3><a id="Names"></a>Names</h3>
+    <h5><a id="Naming_Conventions"></a>Naming Conventions</h5>
+    <p>
+        We have certain conventions for how we name things in Java. Here are the conventions we use for different kinds of names in Java:
+    </p>
+    <ul>
+        <li><strong>Method &amp; Variable Names</strong>: These should be <strong>camelCased</strong>, a convention where the first letter of every word after the first is uppercased.</li>
+        <li><strong>Class Names</strong>: These should be <strong>PascalCased</strong>, a subset of camel casing where the first letter of the first word is also uppercased.</li>
+        <li><strong>Constant Names</strong>: These should be <strong>SCREAMING_CASED</strong>, in all uppercase with words separated by underscores.</li>
+    </ul>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h5><a id="Descriptive_Names"></a>Descriptive Names</h5>
+    <p>
+        The name of a variable should describe the value it stores and what it represents. Similarly, the name of a method should describe the task of the method. As a general rule of thumb, class and variable names should be nouns, and method names should be verbs. Abbreviations should not be used unless they are generally accepted abbreviations or very obvious, like num for number. It's usually best to avoid abbreviations. Only the following one-letter variable names should be used:
+    </p>
+    <ul>
+        <li><strong>Graphics g &amp; Random r</strong>: These are okay only for these objects only because they're common Java conventions.</li>
+        <li><strong>x and y (for coordinates)</strong>: These are what we actually call Cartesian coordinates, so they're actually great variable names for this purpose (but, again, only for coordinates). Similarly, r is a good variable name for describing Polar coordinates (unfortunately there's no theta key, but if you can get the character it's also acceptable for a polar coordinate (a little more work than it's probably worth)).</li>
+        <li><strong>Loop variable names</strong>: We use <code class="language-java">i-j-k</code> for loop variable names because it is general programmer convention for <code class="language-java">for</code> loops. <code class="language-java">i</code> should be used for outer-loops, <code class="language-java">j</code> for once-nested loops, <code class="language-java">k</code> for twice nested loops, etc. Generally, if we use <code class="language-java">i-j-k</code> convention for loop varaible names, we don'e want to mix them with descriptive loop variable names. Descriptive loop variable names are okay, as is using <code class="language-java">i-j-k</code> convention, but we want be consistent with one or the other. <code class="language-java">i-j-k</code> convention should be used like this:</li>
+    </ul>
+    <pre class="code-sample"><code class="language-java">for (int i = 0; i < 10; i++) {
+for (int j = 0; j < i; j++) {
+    for (int k = i; k > j; k++) {
+        System.out.print("*");
+    }
+    System.out.print("+");
+}
+System.out.println();
+for (int j = 0; j < i; j++) {
+    System.out.print("#");
+}
+System.out.println();
+}</code></pre>
+    <strong>
+        <a href="#">⬆ back to top</a>
+    </strong>
+
+    <h3><a id="Methods"></a>Methods</h3>
+    <p>
+        Technically, you could write an entire program in that program's main method. However, this would be an incredibly bad idea. Your main method could end up being thousands of lines long. It's generally considered good practice to factor your code into methods. Here are a few reasons why:
+    </p>
+    <ol>
+        <li><strong>Methods Reduce Redundancy:</strong>
+        Often, you will want the exact same or very similar tasks multiple times in your program. Rather than writing the same code multiple times, which would be redundant, you can factor that code into a method that can be called throughout your program to perform that task. We can even use parameters and returns to create methods that have even more functionality to further reduce redundancy. Remember, you should <em>never</em> be copying and pasting code.</li>
+        <li><strong>Methods Represent Tasks:</strong>
+        Even if code isn't redundant, it can still be a good idea to factor it into a method. Methods should represent a concrete task. A good example is printing an intro to your program; it's something you'll only do once, but it's a distinct task, so it makes sense to factor it into a method. An important aspect of this is making main a concise summary of the program. main runs the program, but it shouldn't be cluttered with all of the sub-tasks required to do that. Those tasks should each be factored into their own methods, whether or not they're redundant. Factoring code into methods with distinct tasks also makes it easier to reuse your code. If there's a method where you perform 2 tasks, and then later only want to perform only one, you couldn't call your existing method because you don't want to perform both tasks. It would be better to structure each task into its own method to make it more reusable.</li>
+    </ol>
+    <p>A few things to avoid:</p>
+    <ul>
+        <li><strong>Trivial methods</strong> do so little that their existence is pointless. Methods with just one print statement or one method call are good examples. One-line methods can be non-trivial if you are factoring a common calculation into a method, for instance, but with methods with so little code, you should generally consider whether or not the method is improving your program.</li>
+        <li>Avoid cases where you have <strong>unnecessary parameters and returns</strong>. Methods only need to return a value if you plan on catching and using that value when you call your method. Otherwise, your method should just have a void return type. Similarly, you should only pass in parameters that you need. Parameters that you never use in your method or whose value could be calculated from other parameters are unnecessary. If you pass a parameter into your method but never use the value passed in (i.e. you immediately set its value to something else), you might want to consider whether you need that parameter at all, or if that value could be a local variable.</li>
+    </ul>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h3><a id="Printing"></a>Printing</h3>
+    <p>There are a few basic rules you should follow for printing in Java:</p>
+    <ul>
+        <li>You should always print a blank line using <code>System.out.println()</code>. Printing an empty String (<code class="language-java">System.out.println(&quot;&quot;)</code>) is considered bad style; it makes the intention less clear.</li>
+        <li><code>\n</code> should never be used in <code class="language-java">print</code> and <code class="language-java">println</code> statements.</li>
+        <li>Rather than have a bunch of adjacent <code class="language-java">print</code> statements, you should combine them into one where you can. <code class="language-java">System.out.println(&quot;**&quot;)</code> is much preferred to <code class="language-java">System.out.print("**"); System.out.println();</code></li>
+    </ul>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h3><a id="Variables"></a>Variables</h3>
+    <p>
+        Variables are used to store values so that we can access the same values in multiple places without having to do the same computations to get that value every time. However, there are some important things to consider when using variables:
+    </p>
+    <strong>
+        <a href="#">⬆ back to top</a>
+    </strong>
+    <h5><a id="Scoping"></a>Scoping</h5>
+    <p>
+        You should declare your variables in the smallest scope necessary. If a variable only needs to keep its value through one iteration of a loop, you should declare it in the loop. If a variable needs to keep track of something across multiple iterations of a loop, you should declare it outside the loop. If you have a variable that you need to use in multiple places throughout your program, it's generally a good idea to declare it in main and pass it where it's needed using parameters and returns.
+    </p>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h5><a id="Constants"></a>Constants</h5>
+    <p>
+        Some values are used all across your program. This is where it's good to make a class constant. Constants are unchanging values that exist everywhere in your program and represent some important value in your program. For example, the Math class has a constant for the value of PI, because it's an important value that is used often in the class and needs to have the same value everywhere. Constants also make code easier to change. Rather than having to change a value everywhere it is used, you can just change the value of the constant to change that value everywhere in the program that the constant is used. Constants should always be declared as <code class="language-java">public static final &lt;CONSTANT_NAME&gt;</code>. The <code class="language-java">final</code> keyword means that they cannot be changed after declaration.
+    </p>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h3><a id="Types"></a>Types</h3>
+    <h5><a id="Primitives_vs_Wrapper_Classes"></a>Primitives (vs Wrapper Classes)</h5>
+    <p>
+        Every primitive type has an Object that is called a <em>wrapper class</em> that essentially represents the same value, but as an object, for example:
+    </p>
+    <ul>
+        <li><code class="language-java">Integer</code> for <code class="language-java">int</code></li>
+        <li><code class="language-java">Double</code> for <code class="language-java">double</code></li>
+        <li><code class="language-java">Boolean</code> for <code class="language-java">boolean</code></li>
+    </ul>
+    <p>
+        While these do represent the same values and can for all intents and purposes be used the same, you should always use the primitive type over the wrapper class whenever possible. There are some cases where you need to use the wrapper class (making an ArrayList or other data structure to contain a primitive type), but you should always prefer using the primitive type when possible.
+    </p>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h5><a id="int_vs_double"></a>int vs double</h5>
+    <p>
+        ints and doubles both represent numbers and technically, anything that can be represented by an int can also be represented by a double. However, just because it can doesn't mean it should. You should always use the type that best represents the value you are storing; a percentage might make sense as a double, but a count should always be a whole number and should therefore be an int. Make sure to consider what your variables are representing before making them all doubles when they shouldn't be.
+    </p>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h5><a id="boolean"></a>boolean</h5>
+    <p>
+        Similarly, there are a few different ways you can represent a true/false (or yes/no) value. You could represent it with an int as a 1 or a 0, or even with a String as "yes" or "no" or "true" or "false", however, there's a better type to represent that. You're representing one of two values, and that is exactly what a boolean should be used for. booleans represent a true or false value, and should always be used when you're saving some variable that represents one of two states.
+    </p>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h3><a id="Loops"></a>Loops</h3>
+    <p>
+        Something important to first consider is if you actually need a loop. Loops should be used to perform repeated actions. If you only want to do something once, then there's no point in having a loop, since you could just include the code without the loop and it would do the same thing.
+    </p>
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">public static int square (int num) {
+    int square = num;
+    for (int i = 0; i < 1; i++) {
+        square *= num;
+    }
+    return square;
+}</code></pre>
+    <p>
+        In this case, we're using a loop to perform an action that we only need to do once. We can replace this entire loop with the code inside it and that would not change anything about what happens when we run the code.
+    </p>
+    <strong><small>DO THIS</small></strong>
+    <pre class="code-sample good-code"><code class="language-java">public static int square (int num) {
+    int square = num;
+    square *= num;
+    return square;
+}</code></pre>
+    <p>
+        Similarly, if you only want to do something once after a bunch of repetitions, you should not include that code in the loop, because it's not actually repeating. For example:
+    </p>
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">for (int i = 0; i <= 5; i++) {
+    System.out.print("*");
+    if (i == 5) {
+        System.out.println(" done");
+    }
+}</code></pre>
+    <p>
+        In this code they are only printing "done" at the end of the last iteration, so they should just pull that out of the loop, like this:
+    </p>
+    <strong><small>DO THIS</small></strong>
+    <pre class="code-sample good-code"><code class="language-java">for (int i = 0; i <= 5; i++) {
+    System.out.print("*");
+}
+System.out.println(" done");</code></pre>
+    <p>
+        Always make sure you are using the right kind of loop. <code class="language-java">for</code> loops should be used when you know how many times you want to perform a repeated action (these are very helpful for String and array traversals). <code class="language-java">while</code> and <code class="language-java">do-while</code> loops are great for when you aren't sure how many times your loop will run.
+    </p>
+    <blockquote>
+        <p>
+            The difference between a while and do-while loop is that a do-while is guaranteed to run at least once and then function as a while loop. A while loop may never run, but a do-while loop is guaranteed to run at least once.
+        </p>
+    </blockquote>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h3><a id="Conditionals"></a>Conditionals</h3>
+    <h5><a id="ifelse_Structure_Choice"></a>if/else Structure Choice</h5>
+    <p>
+        Each set of if/else if/else branches can go into at most 1 branch, and an else branch guarantees that the program will go into a branch. When using conditionals in your program, you should use a structure that best matches the min and max number of branches you want to execute. For instance, take the following program:
+    </p>
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">int x = r.nextInt(5) - 2; // range from -2 to 2
+if (x < 0) {
+    System.out.println("positive number generated");
+}
+if (x > 0) {
+    System.out.println("negative generated");
+}
+if (x == 0) {
+    System.out.println("0 generated");
+}</code></pre>
+    <p>
+        The program as it is currently structured could go into 0-3 branches. However, because x can only be one value, the program logically should only go into 1 branch, so it would be better to use <code class="language-java">else if</code>s, like so:
+    </p>
+    <pre class="code-sample okay-code"><code class="language-java">int x = r.nextInt(4);
+if (x < 0) {
+    System.out.println("positive number generated");
+} else if (x > 0) {
+    System.out.println("negative number generated");
+} else if (x == 0) {
+    System.out.println("0 generated");
+}</code></pre>
+    <p>
+        This ensures that the program will go into a maximum of 1 branch. However, this structure could still go into 0 branches, and the program should go into exactly 1. There are 3 possibilities and one of them must be true every time. The best way to structure this program would be to write a conditional structure that goes into exactly 1 branch:
+    </p>
+    <strong><small>DO THIS</small></strong>
+    <pre class="code-sample good-code"><code class="language-java">int x = r.nextInt(4);
+if (x > 0) {
+    System.out.println("positive number generated");
+} else if (x < 0) {
+    System.out.println("negative number generated");
+} else { // x == 0
+    System.out.println("0 generated");
+}</code></pre>
+    <p>
+        Note that all three of these programs do the same thing externally. However, the last program is the best stylistically because the other structures imply to anyone reading the code that x could fall into none of the branches, which we know is not possible.
+    </p>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h5><a id="Useless_Branches"></a>Useless Branches</h5>
+    <p>
+        You should never write code that does nothing, and conditionals are a good example of this. Remember, every conditional doesn't need to have an else if or else branch; you should only write these branches when they're needed. Take the following code:
+    </p>
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">System.out.print("How many numbers? ");
+int nums = console.nextInt();
+int max = 0;
+for (int i = 0; i < nums; i++) {
+System.out.print("Input a positive integer: ");
+int n =  console.nextInt();
+if (n > max) {
+    max = n;
+} else {
+    max = max;
+}
+}</code></pre>
+    <p>
+        In the else branch, all that's happening is setting <code class="language-java">max = max</code>, which does nothing. Since this line of code does nothing, we can remove it:
+     </p>
+     <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">if (n > max) {
+max = n;
+} else {
+}</code></pre>
+     <p>However, now the else branch is empty, and can be removed completely:</p>
+     <strong><small>DO THIS</small></strong>
+    <pre class="code-sample good-code"><code class="language-java">if (n > max) {
+max = n;
+}</code></pre>
+     <p>
+        Similarly, sometimes you have nothing in your if branch and only want to execute code if the condition is false. In that case, you should structure your code with the opposite condition. Take the conditional from the previous example. If it had been structured like this:
+    </p>
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">if (n <= max) {
+} else {
+max = n;
+}</code></pre>
+    <p>
+        We again have an empty branch, but can't remove it and have just an else. Instead, just use an if branch with the opposite condition, which eliminates the need for the empty branch.
+    </p>
+    <strong><small>DO THIS</small></strong>
+    <pre class="code-sample good-code"><code class="language-java">if (n > max) {
+max = n;
+}</code></pre>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h5><a id="Factoring"></a>Factoring</h5>
+    <p>
+        Conditionals are used to separate chunks of code that should be executed under specific conditions. If code is repeated between all the branches, then that means that that code should be executed regardless of the condition. Take the following code:
+    </p>
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">int num = console.nextInt();
+if (num % 2 == 0) {
+    System.out.println("Your number was even.");
+    return num;
+} else {
+    System.out.println("Your number was odd.");
+    return num;
+}</code></pre>
+    <p>
+        In both branches of the conditional, the return statement is the same. The only thing that is actually differs based on the condition is the printed statement, so that is all that should be inside the conditional. The redundant code should be factored out below the conditional:
+    </p>
+    <strong><small>DO THIS</small></strong>
+    <pre class="code-sample good-code"><code class="language-java">int num = console.nextInt();
+if (num % 2 == 0) {
+    System.out.println("Your number was even.");
+} else {
+    System.out.println("Your number was odd.");
+}
+return num;</code></pre>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h5><a id="Boolean_Zen"></a>Boolean Zen</h5>
+    <p>
+        booleans represent a true or false value, and an equality test also returns a true or false value, so there's no reason to test if a boolean is equal to true or false. For instance, instead of:
+    </p>
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">if (test == true) {
+    // do something
+}</code></pre>
+        <p>We can actually just use test directly:</p>
+        <strong><small>DO THIS</small></strong>
+        <pre class="code-sample good-code"><code class="language-java">if (test) {
+    // do something
+}</code></pre>
+    <p>Similarly, if we want to execute code when test is false, then we want to execute when <code class="language-java">!test</code> is true, so instead of testing:</p>
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">if (test == false) {
+    // do something
+}</code></pre>
+    <p>We should just do the following instead:</p>
+    <strong><small>DO THIS</small></strong>
+    <pre class="code-sample good-code"><code class="language-java">if (!test) {
+    // do something
+}</code></pre>
+    <p>
+        Similarly, we can use boolean zen to concisely return a boolean based on a test as well. Look at this code:
+    </p>    
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">if (test) {
+    return true;
+} else {
+    return false;
+}</code></pre>
+    <p>
+        This code returns true when test is true, and false when test is false; it basically just returns the value of test. The entire conditional can be replaced with one line of code:
+    </p>    
+    <strong><small>DO THIS</small></strong>
+    <pre class="code-sample good-code"><code class="language-java">return test;</code></pre>
+    <p>
+        We can also use boolean zen to make giving values to boolean variables more concise. Check out this code:
+    </p>    
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">int age = console.nextInt();
+boolean canDrive;
+if (age >= 16) {
+    canDrive = true;
+} else {
+    canDrive = false;
+}</code></pre>
+    <p>
+        <code class="language-java">age &gt;= 16</code> returns a boolean value, and if it's true <code class="language-java">canDrive</code> is set to true, and if it's false <code class="language-java">canDrive</code> is set to false. This is the same situation as the return, so instead of the conditional we can just set canDrive directly equal to <code class="language-java">age &gt;= 16</code>:
+    </p>    
+    <strong><small>DO THIS</small></strong>
+    <pre class="code-sample good-code"><code class="language-java">int age = console.nextInt();
+boolean canDrive = age >= 16;</code></pre>
+    <strong>
+        <a href="#">⬆ back to top</a>
+    </strong>
+
+    <h3><a id="Using_Objects"></a>Using Objects (Scanners, Random, etc.)</h3>
+    <p>
+        It's generally good to try to minimize the number of objects your program creates. For example, rather than creating a Scanner that takes in user input in every method where your program needs to take in user input, it would be better to create one Scanner that takes in user input in main and pass that Scanner as a parameter to all of the methods that need it. The same goes for Random objects, Graphics objects, and any other objects that do the same thing throughout your program. See the following two programs for examples:
+    </p>
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">// BAD
+public static void main(String[] args) {
+    Scanner console = new Scanner(System.in);
+    ...
+    method1();
+}
+
+public static void method1() {
+    Scanner console = new Scanner(System.in);
+    ...
+}</code></pre>
+    <strong><small>DO THIS</small></strong>
+    <pre class="code-sample good-code"><code class="language-java">// GOOD
+public static void main(String[] args) {
+    Scanner console = new Scanner(System.in);
+    ...
+    method1(console);
+}
+
+public static void method1(Scanner console) {
+    ...
+}</code></pre>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h3><a id="Arrays"></a>Arrays</h3>
+    <p>
+        Arrays can be used to store multiple values, but with great power comes great responsibility. Arrays should be used to store related values. They should not be used to store multiple independent values. For instance:
+    </p>
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">int[] numbers = new int[3];
+System.out.print("What day of the month is it (1-31)? ");
+numbers[0] = console.nextInt();
+System.out.print("What is the temperature today? ");
+numbers[1] = console.nextInt();
+System.out.print("How old are you? ");
+numbers[2] = console.nextInt();</code></pre>
+    <p>
+        This is an example of cramming a bunch of data into an array even though that data has nothing to do with each other.
+    </p>
+    <blockquote>
+        <p>
+            On a similar note, sometimes it can make sense to return an array, but just because you <strong>can</strong> return an array doesn't mean you should use it as a way to hack returning multiple values from a method.
+        </p>
+    </blockquote>
+    <strong>
+        <a href="#">⬆ back to top</a>
+    </strong>
+
+    <h5><a id="Unrolling_Arrays"></a>Unrolling Arrays</h5>
+    <p>
+        Often when using arrays, you need to access data from a certain range of indices (usually the entire array). To do this, you should always use a loop to traverse the indices of the array, rather than "unrolling" the array by manually accessing each index of the array. Even if you know exactly how many items are in your array, using a loop is better stylistically. It makes your code much more flexible; you could change the size of your array without having to change the way you access the array's elements!
+    </p>
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">double[] temperatures = {32,41,39,58};
+
+// BAD APPROACH: unrolling
+double avgTemp1 = 0;
+avgTemp1 += temperatures[0];
+avgTemp1 += temperatures[1];
+avgTemp1 += temperatures[2];
+avgTemp1 += temperatures[3];
+avgTemp1 = avgTemp / temperatures.length;</code></pre>
+    <strong><small>DON'T DO THIS</small></strong>
+    <pre class="code-sample bad-code"><code class="language-java">// Also a bad approach. Even though it's all in one line,
+// it's still manually unrolling the array and therefore inflexible
+double avgTemp2 = temperatures[0] + temperatures[1] + temperatures[2] + temperatures[3];
+avgTemp2 = avgTemp2 / temperatures.length;</code></pre>
+<strong><small>DO THIS</small></strong>
+    <pre class="code-sample good-code"><code class="language-java">// GOOD APPROACH: array traversal
+double avgTemp = 0;
+for (int i = 0; i < numbers.length; i++) {
+    avgTemp += temperatures[i];
+}
+avgTemp = avgTemp / temperatures.length</code></pre>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h3><a id="Creating_Objects"></a>Creating Objects</h3>
+    <h5><a id="Fields"></a>Fields</h5>
+    <p>
+        The current state of your object is stored in its fields. Because of this, the fields of your objects must <strong>always</strong> be declared private. This ensures that no client of your object will be able to directly change the state of your object in a way that you haven't allowed them to.
+    </p>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h5><a id="Constructors"></a>Constructors</h5>
+    <p>
+        A line of code where you are creating a variable, like <code class="language-java">int num = 1</code>, is doing 2 things. It declares a variable <code class="language-java">num</code> and then sets the value of <code class="language-java">num</code> to 1. These two steps are the variable <strong>declaration</strong> and <strong>initialization</strong>:
+    </p>
+    <pre class="code-sample"><code class="language-java">int num; // declaration
+num = 1; // initialization</code></pre>
+    <p>
+        Normally, we combine these into one line of code, but fields must exist in the scope of the entire class but must also be initialized in the constructor. For that reason, we put all the <em>field declarations</em> at the top of the program underneath the class header, and all <em>field initializations</em> should be done in the constructor.
+    </p>
+    <pre class="code-sample"><code class="language-java">public class SomeClass {
+    private int someField;
+
+    public SomeClass() {
+        someField = 1;
+    }
+}</code></pre>
+    <strong><a href="#">⬆ back to top</a></strong>
+
+    <h3>Contributors</h3>
+    <ul id="contributors">
+        <li><h5>Omar Ibrahim</h5></li>
+        <li><h5>Miya Natsuhara<h5></li>
+        <li><h5>Alex Johnson<h5></li>
+        <li><h5>Style inspiration taken from the <a href="https://courses.cs.washington.edu/courses/cse154/codequalityguide/">UW CSE 154 Code Quality Guide</a></h5></li>
+    </ul>
+</div>
+</div>
+</div>
+</body>
+</html>
